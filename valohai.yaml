@@ -3,12 +3,12 @@
 - step:
     name: Execute python train.py
     image: python
-    command: python train.py
+    command: python train.py {parameters}
     #inputs:
     #  - name: example-input
     #    default: https://example.com/
-    #parameters:
-    # - name: example
-    #   description: Example parameter
-    #   type: integer
-    #   default: 300
+    parameters:
+     - name: how_random
+       description: How random you want the metadata to be
+       type: float
+       default: 0.05
