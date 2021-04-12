@@ -4,12 +4,13 @@ import time
 import math
 import argparse
 
-end_epoch = 10
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--how_random', type=float, default=0.05)
-how_random = parser.parse_args().how_random
-
+parser.add_argument('--epochs', type=int, default=10)
+parsed = parser.parse_args()
+how_random = parsed.how_random
+end_epoch = parsed.epochs
 
 def logMetadata(epoch, loss, accuracy):
     print()

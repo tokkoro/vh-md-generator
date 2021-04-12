@@ -8,7 +8,11 @@
     #  - name: example-input
     #    default: https://example.com/
     parameters:
-     - name: how_random
-       description: How random you want the metadata to be
-       type: float
-       default: 0.05
+      - name: how_random
+        description: How random you want the metadata to be
+        type: float
+        default: 0.05
+      - name: epochs
+        description: How many epochs do you want?
+        type: integer
+        default: 10
