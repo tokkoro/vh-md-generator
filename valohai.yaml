@@ -16,7 +16,7 @@
         description: How many epochs do you want?
         type: integer
         default: 10
-      - name: wait_seconds
+      - name: wait_time
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
