@@ -37,7 +37,6 @@ def random_m1_p1():
 
 for epoch in range(0, end_epoch):
     t = epoch / end_epoch
-    print(t)
     logMetadata(epoch + 1, lerp(4.0, 2.0, t) + random.random() * how_random,
                 steep_log01(t) + (how_random * random_m1_p1()))
     time.sleep(wait_time * (0.8 + 0.4 * random.random()))  # +- 20 % random
