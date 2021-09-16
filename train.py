@@ -15,11 +15,10 @@ wait_time = parsed.wait_time
 
 
 def logMetadata(epoch, loss, accuracy):
-    print(json.dumps({
-        'epoch': epoch,
-        'loss': loss,
-        'acc': accuracy,
-    }, sort_keys=True, indent=4))
+    print()
+    print(json.dumps({"epoch": epoch}))
+    print(json.dumps({"accuracy": accuracy}))
+    print(json.dumps({"loss": loss}))
 
 
 def lerp(a, b, t):
