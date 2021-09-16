@@ -19,7 +19,7 @@ def logMetadata(epoch, loss, accuracy):
         'epoch': epoch,
         'loss': loss,
         'acc': accuracy,
-    }))
+    }, sort_keys=True, indent=4))
 
 
 def lerp(a, b, t):
