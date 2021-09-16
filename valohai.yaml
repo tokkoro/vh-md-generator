@@ -1,6 +1,7 @@
 ---
 
-- st ep:
+- step:
+    moi: tämä ei kuulu tähän
     name: train.py
     image: python
     command: python train.py {parameters}
