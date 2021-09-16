@@ -13,14 +13,26 @@ end_epoch = parsed.epochs
 how_random = parsed.how_random
 wait_time = parsed.wait_time
 
+words = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum".split();
+
+long_name = "Long_metrics_name_that_has_multiple_important_parts_123456";
+
+def random_words(length):
+    result = ""
+    for i in range(length):
+        result += words[random.randrange(len(words))] + " "
+    return result;
+    
 
 def logMetadata(epoch, loss, accuracy):
-    print()
-    print(json.dumps({
+    data = {
         'epoch': epoch,
-        'loss': loss,
+        'loss': -loss,
         'acc': accuracy,
-    }))
+    }
+    for i in range(20):
+        data[long_name[:-2*i]] = accuracy
+    print(json.dumps(data))
 
 
 def lerp(a, b, t):

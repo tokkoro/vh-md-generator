@@ -1,7 +1,7 @@
 ---
 
 - step:
-    name: Execute python train.py
+    name: train.py
     image: python
     command: python train.py {parameters}
     #inputs:
@@ -20,3 +20,14 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
+- step:
+    name: hardcoded
+    image: python
+    command: python hardcoded-mt.py
+
+- endpoint:
+    name: random_vh_metadata
+    description: Respond with random vh_metadata log
+    image: python:3.9
+    port: 8000
+    server-command: python endpoint.py
