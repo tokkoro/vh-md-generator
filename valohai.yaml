@@ -1,6 +1,6 @@
 ---
 
-- step:
+- st ep:
     name: train.py
     image: python
     command: python train.py {parameters}
