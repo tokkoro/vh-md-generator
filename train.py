@@ -15,7 +15,6 @@ wait_time = parsed.wait_time
 
 
 def logMetadata(epoch, loss, accuracy):
-    print()
     print(json.dumps({
         'epoch': epoch,
         'loss': loss,
