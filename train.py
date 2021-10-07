@@ -14,11 +14,12 @@ how_random = parsed.how_random
 wait_time = parsed.wait_time
 
 
-def logMetadata(epoch, loss, accuracy):
+def logMetadata(epoch, loss, accuracy, gain):
     print(json.dumps({
         'epoch': epoch,
         'loss': loss,
         'acc': accuracy,
+        'gain': gain
     }))
 
 
@@ -36,6 +37,10 @@ def random_m1_p1():
 
 for epoch in range(0, end_epoch):
     t = epoch / end_epoch
-    logMetadata(epoch + 1, lerp(4.0, 2.0, t) + random.random() * how_random,
-                steep_log01(t) + (how_random * random_m1_p1()))
+    logMetadata(
+        epoch + 1,
+        lerp(2.3, 0, t) + random.random() * how_random,
+        math.log(1+10*t) + (how_random * random_m1_p1()),
+        1.2 + how_random * random_m1_p1()
+    )
     time.sleep(wait_time * (0.8 + 0.4 * random.random()))  # +- 20 % random
