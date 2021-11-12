@@ -18,10 +18,8 @@
       default: 1
     inputs:
     - name: sim_input
-      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
       optional: false
     - name: elt_sales_input
-      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
       optional: false
 - step:
     name: elt-data
@@ -61,10 +59,8 @@
       default: 1
     inputs:
       - name: elt_sales_input
-        default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
         optional: false
       - name: elt_asmt_input
-        default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
         optional: false
 - step:
     name: write-results
@@ -86,10 +82,8 @@
         default: 1
     inputs:
     - name: sim_input
-      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
       optional: false
     - name: cluster_input
-      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
       optional: false
 - pipeline:
     name: Store Similarity
