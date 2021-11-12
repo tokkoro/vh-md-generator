@@ -1,9 +1,76 @@
----
-
 - step:
-    name: Execute python train.py
+    name: compute-clusters
     image: python
-    command: python train.py {parameters}
+    command:
+    - python train.py {parameters}
+    parameters:
+    - name: how_random
+      description: How random you want the metadata to be
+      type: float
+      default: 0.05
+    - name: epochs
+      description: How many epochs do you want?
+      type: integer
+      default: 10
+    - name: wait_time
+      description: How long to wait between generated metadata (seconds)
+      type: float
+      default: 1
+    inputs:
+    - name: sim_input
+      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
+      optional: false
+    - name: elt_sales_input
+      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
+      optional: false
+- step:
+    name: elt-data
+    image: python
+    command:
+    - python train.py {parameters}
+    parameters:
+    - name: how_random
+      description: How random you want the metadata to be
+      type: float
+      default: 0.05
+    - name: epochs
+      description: How many epochs do you want?
+      type: integer
+      default: 10
+    - name: wait_time
+      description: How long to wait between generated metadata (seconds)
+      type: float
+      default: 1
+- step:
+    name: sim-metric-model
+    image: python
+    command:
+    - python train.py {parameters}
+    parameters:
+    - name: how_random
+      description: How random you want the metadata to be
+      type: float
+      default: 0.05
+    - name: epochs
+      description: How many epochs do you want?
+      type: integer
+      default: 10
+    - name: wait_time
+      description: How long to wait between generated metadata (seconds)
+      type: float
+      default: 1
+    inputs:
+      - name: elt_sales_input
+        default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
+        optional: false
+      - name: elt_asmt_input
+        default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
+        optional: false
+- step:
+    name: write-results
+    image: python
+    command:
+    - python train.py {parameters}
     parameters:
       - name: how_random
         description: How random you want the metadata to be
@@ -17,32 +84,48 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
-- step:
-    name: Step2
-    image: python
-    command: python train.py {parameters}
-    parameters:
-      - name: how_random
-        description: How random you want the metadata to be
-        type: float
-        default: 0.05
-      - name: epochs
-        description: How many epochs do you want?
-        type: integer
-        default: 10
-      - name: wait_time
-        description: How long to wait between generated metadata (seconds)
-        type: float
-        default: 1
-
+    inputs:
+    - name: sim_input
+      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
+      optional: false
+    - name: cluster_input
+      default: datum://017d13ab-c962-6e42-bbb1-ccfb0e0b3554
+      optional: false
 - pipeline:
-      name: do-2-steps
-      nodes:
-        - name: step-1-node
-          type: execution
-          step: Execute python train.py
-        - name: step-2-node
-          type: execution
-          step: Step2
-      edges:
-        - [step-1-node.output.*, step-2-node.input.*]
+    name: Store Similarity
+    edges:
+    - configuration: {}
+      source: elt-node.output.output_file.txt
+      target: sim-metric-node.input.elt_sales_input
+    - configuration: {}
+      source: elt-node.output.output_file.txt
+      target: sim-metric-node.input.elt_asmt_input
+    - configuration: {}
+      source: sim-metric-node.output.output_file.txt
+      target: cluster-node.input.sim_input
+    - configuration: {}
+      source: elt-node.output.output_file.txt
+      target: cluster-node.input.elt_sales_input
+    - configuration: {}
+      source: cluster-node.output.output_file.txt
+      target: results-node.input.cluster_input
+    - configuration: {}
+      source: sim-metric-node.output.output_file.txt
+      target: results-node.input.sim_input
+    nodes:
+    - name: elt-node
+      override: {}
+      step: elt-data
+      type: execution
+    - name: sim-metric-node
+      override: {}
+      step: sim-metric-model
+      type: execution
+    - name: cluster-node
+      override: {}
+      step: compute-clusters
+      type: execution
+    - name: results-node
+      override: {}
+      step: write-results
+      type: execution

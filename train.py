@@ -13,6 +13,9 @@ end_epoch = parsed.epochs
 how_random = parsed.how_random
 wait_time = parsed.wait_time
 
+f = open("/valohai/outputs/output_file.txt", "w")
+f.write("this is an output!")
+f.close()
 
 def logMetadata(epoch, loss, accuracy, gain):
     print(json.dumps({
