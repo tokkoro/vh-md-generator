@@ -123,6 +123,7 @@
       override: {}
       step: write-results
       type: execution
+
 - step:
     name: preprocess
     image: python:3.10
@@ -137,6 +138,33 @@
     parameters:
     - name: id
       type: string
+- step:
+    name: train-erroneuos
+    image: python:3.10
+    command:
+      - pip install valohai-utils
+      - python ./input_pipeline_task_storeid-error.py {parameters}
+    parameters:
+    - name: id
+      type: string
+- step:
+    name: end-step
+    image: python
+    command:
+      - python train.py {parameters}
+    parameters:
+      - name: how_random
+        description: How random you want the metadata to be
+        type: float
+        default: 0.05
+      - name: epochs
+        description: How many epochs do you want?
+        type: integer
+        default: 10
+      - name: wait_time
+        description: How long to wait between generated metadata (seconds)
+        type: float
+        default: 1
 - pipeline:
     name: task pipeline
     nodes:
@@ -146,5 +174,17 @@
     - name: train
       step: train
       type: task
+    - name: train-erroneuos
+      step: train-erroneuos
+      type: task
+    - name: end
+      step: end-step
+      type: task
+    - name: end-after-error
+      step: end-step
+      type: task
     edges:
     - [preprocess.metadata.storeids, train.parameter.id]
+    - [train.metadata.acc, end.parameter.how_random]
+    - [preprocess.metadata.storeids, train-erroneuos.parameter.id]
+    - [train-erroneuos.metadata.acc, end-after-error.parameter.how_random]
