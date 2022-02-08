@@ -165,6 +165,11 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
+      - name: cluster_input
+        optional: false
+    inputs:
+    - name: cluster_input
+      optional: false
 - pipeline:
     name: task pipeline
     nodes:
@@ -172,19 +177,19 @@
       step: preprocess
       type: execution
     - name: train
-      step: train-erroneuos
+      step: train
       type: task
     - name: train-erroneuos
       step: train-erroneuos
       type: task
     - name: end
       step: end-step
-      type: task
+      type: execution
     - name: end-after-error
       step: end-step
-      type: task
+      type: execution
     edges:
     - [preprocess.metadata.storeids, train.parameter.id]
-    - [train.metadata.acc, end.parameter.how_random]
+    - [train.output.output_file.txt, end.input.cluster_input]
     - [preprocess.metadata.storeids, train-erroneuos.parameter.id]
-    - [train-erroneuos.metadata.acc, end-after-error.parameter.how_random]
+    - [train-erroneuos.output.output_file.txt, end-after-error.input.cluster_input]
