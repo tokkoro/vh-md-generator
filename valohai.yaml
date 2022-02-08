@@ -143,7 +143,7 @@
     image: python:3.10
     command:
       - pip install valohai-utils
-      - python ./input_pipeline_task_storeid-error.py {parameters}
+      - python ./input_pipeline_task_storeid_error.py {parameters}
     parameters:
     - name: id
       type: string
