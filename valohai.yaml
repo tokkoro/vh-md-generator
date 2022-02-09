@@ -50,9 +50,11 @@
     - name: preprocess
       step: preprocess
       type: execution
+      on-error: continue
     - name: train
       step: train
       type: task
+      on-error: continue
     - name: train-erroneuos
       step: train-erroneuos
       on-error: continue
@@ -60,9 +62,11 @@
     - name: end
       step: end-step
       type: execution
+      on-error: continue
     - name: end-after-error
       step: end-step
       type: execution
+      on-error: continue
     edges:
     - [preprocess.metadata.storeids, train.parameter.id]
     - [train.output.output_file.txt, end.input.cluster_input]
