@@ -70,3 +70,21 @@
     - [train.output.output_file.txt, end.input.cluster_input]
     - [preprocess.metadata.storeids, train-erroneuos.parameter.id]
     - [train-erroneuos.output.output_file.txt, end-after-error.input.cluster_input]
+- pipeline:
+    name: task pipeline in line
+    nodes:
+      - name: preprocess
+        step: preprocess
+        type: execution
+        on-error: continue
+      - name: train-erroneuos
+        step: train-erroneuos
+        on-error: continue
+        type: task
+      - name: end-after-error
+        step: end-step
+        type: execution
+        on-error: stop-all
+    edges:
+      - [ preprocess.metadata.storeids, train-erroneuos.parameter.id ]
+      - [ train-erroneuos.output.output_file.txt, end-after-error.input.cluster_input ]
