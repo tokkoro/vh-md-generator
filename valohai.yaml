@@ -39,8 +39,6 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
-      - name: cluster_input
-        optional: false
     inputs:
     - name: cluster_input
       optional: false
