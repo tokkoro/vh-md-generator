@@ -135,3 +135,31 @@
     - [train.output.output_file.txt, end.input.cluster_input]
     - [preprocess.metadata.storeids, train-erroneuos.parameter.id]
     - [train-erroneuos.output.output_file.txt, end-after-error.input.cluster_input]
+- pipeline:
+    name: task pipeline stop-next
+    nodes:
+      - name: preprocess
+        step: preprocess
+        type: execution
+        on-error: stop-next
+      - name: train
+        step: train
+        type: task
+        on-error: stop-next
+      - name: train-erroneuos
+        step: train-erroneuos
+        type: task
+        on-error: stop-next
+      - name: end
+        step: end-step
+        type: execution
+        on-error: stop-next
+      - name: end-after-error
+        step: end-step
+        type: execution
+        on-error: stop-next
+    edges:
+      - [ preprocess.metadata.storeids, train.parameter.id ]
+      - [ train.output.output_file.txt, end.input.cluster_input ]
+      - [ preprocess.metadata.storeids, train-erroneuos.parameter.id ]
+      - [ train-erroneuos.output.output_file.txt, end-after-error.input.cluster_input ]
