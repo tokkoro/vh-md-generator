@@ -88,3 +88,21 @@
     edges:
       - [ preprocess.metadata.storeids, train-erroneuos.parameter.id ]
       - [ train-erroneuos.output.output_file.txt, end-after-error.input.cluster_input ]
+- pipeline:
+    name: task in line no errors
+    nodes:
+      - name: preprocess
+        step: preprocess
+        type: execution
+        on-error: stop-all
+      - name: train
+        step: train
+        on-error: stop-all
+        type: task
+      - name: end
+        step: end-step
+        type: execution
+        on-error: stop-all
+    edges:
+      - [ preprocess.metadata.storeids, train.parameter.id ]
+      - [ train.output.output_file.txt, end.input.cluster_input ]
