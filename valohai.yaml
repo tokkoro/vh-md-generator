@@ -2,7 +2,12 @@
     name: preprocess
     image: python:3.10
     command:
-      - python ./output_pipeline_task_storeid.py
+      - python ./output_pipeline_task_storeid.py {parameters}
+    parameters:
+      - name: node_count
+        description: How many nodes to you want? every 3 in set of 5 will error
+        type: integer
+        default: 5
 - step:
     name: train
     image: python:3.10
