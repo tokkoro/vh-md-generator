@@ -1,12 +1,15 @@
-import valohai
+import argparse
 import json
 
-f = open("/valohai/outputs/output_file.txt", "w")
-f.write("this is an output!")
-f.close()
 
-storeid = valohai.parameters('id').value
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--parameter_id', type=int, default=1337)
+    return parser.parse_args()
+
+
+args = parse_args()
 
 print(json.dumps({
-    'storeid': storeid,
+    'parameter_id': args.parameter_id,
 }))
