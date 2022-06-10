@@ -4,7 +4,17 @@
     command:
       - echo {parameters}
     parameters:
-      - name: how_many
+      - name: optional_false
+        description: How many outputs do you want?
+        type: integer
+        default: 20
+        optional: false
+      - name: optional_true
+        description: How many outputs do you want?
+        type: integer
+        default: 20
+        optional: true
+      - name: optional_undef
         description: How many outputs do you want?
         type: integer
         default: 20
