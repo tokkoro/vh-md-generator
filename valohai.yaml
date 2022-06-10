@@ -25,3 +25,19 @@
           - wait
           - check
           - who
+      - name: optional_word
+        type: string
+        optional: true
+        choices:
+          - cool
+          - wait
+          - check
+          - who
+      - name: word_with_default
+        type: string
+        default: check
+        choices:
+          - cool
+          - wait
+          - check
+          - who
