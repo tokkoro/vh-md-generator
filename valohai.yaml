@@ -1,43 +1,5 @@
 - step:
-    name: create-many-outputs
-    image: alpine
+    name: bad-metadata-types
+    image: python
     command:
-      - echo {parameters}
-    parameters:
-      - name: optional_false
-        description: How many outputs do you want?
-        type: integer
-        default: 20
-        optional: false
-      - name: optional_true
-        description: How many outputs do you want?
-        type: integer
-        default: 20
-        optional: true
-      - name: optional_undef
-        description: How many outputs do you want?
-        type: integer
-        default: 20
-      - name: word
-        type: string
-        choices:
-          - cool
-          - wait
-          - check
-          - who
-      - name: optional_word
-        type: string
-        optional: true
-        choices:
-          - cool
-          - wait
-          - check
-          - who
-      - name: word_with_default
-        type: string
-        default: check
-        choices:
-          - cool
-          - wait
-          - check
-          - who
+      - python train.py {parameters}

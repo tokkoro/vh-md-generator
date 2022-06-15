@@ -1,49 +1,18 @@
 import json
-import random
-import time
-import math
-import argparse
 
-parser = argparse.ArgumentParser()
-parser.add_argument('--epochs', type=int, default=10)
-parser.add_argument('--how_random', type=float, default=0.05)
-parser.add_argument('--wait_time', type=float, default=0.05)
-parsed = parser.parse_args()
-end_epoch = parsed.epochs
-how_random = parsed.how_random
-wait_time = parsed.wait_time
 
-f = open("/valohai/outputs/output_file.txt", "w")
-f.write("this is an output!")
-f.close()
-
-def logMetadata(epoch, loss, accuracy, gain):
+def logMetadata(epoch, loss, accuracy, gain, num):
     print(json.dumps({
         'epoch': epoch,
         'loss': loss,
         'acc': accuracy,
-        'gain': gain
+        'gain': gain,
+        'numberi': num,
     }))
 
 
-def lerp(a, b, t):
-    return a * (1 - t) + b * t
-
-
-def steep_log01(t):
-    return max(0.0, (1 + math.log10(max(0.000000001, t)) / 10))
-
-
-def random_m1_p1():
-    return 2.0 * (random.random() - 0.5)
-
-
-for epoch in range(0, end_epoch):
-    t = epoch / end_epoch
-    logMetadata(
-        epoch + 1,
-        lerp(2.3, 0, t) + random.random() * how_random,
-        math.log(1+10*t) + (how_random * random_m1_p1()),
-        1.2 + how_random * random_m1_p1()
-    )
-    time.sleep(wait_time * (0.8 + 0.4 * random.random()))  # +- 20 % random
+logMetadata(1, "teksti",    "3",    '1970-01-01T00:00:00.000000', 1)
+logMetadata(2, -1,          4,      '2020-01-01T00:00:00.000000', "2")
+logMetadata(3, "teksti",    5,      '2020-01-01T00:00:00.000000', 3)
+logMetadata(4, 3,           6,      '2020-01-01T00:00:00.000000', "5")
+logMetadata(4, "teksti",    6,      '2020-01-01T00:00:00.000000', "5")
