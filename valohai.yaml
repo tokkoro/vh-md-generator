@@ -4,19 +4,18 @@
     name: Execute python train.py
     image: python
     command: python train.py {parameters}
-    #inputs:
-    #  - name: example-input
-    #    default: https://example.com/
     parameters:
-      - name: how_random
+      - name: float_value
         description: How random you want the metadata to be
         type: float
         default: 0.05
-      - name: epochs
+      - name: integer_value
         description: How many epochs do you want?
         type: integer
         default: 10
-      - name: wait_time
+      - name: string_value
+        description: This has a very long description text that take so much space and I don't know how to to put it in the view after it is loaded. How long to wait between generated metadata (seconds)
+        type: string
+      - name: flag_value
         description: How long to wait between generated metadata (seconds)
-        type: float
-        default: 1
+        type: flag
