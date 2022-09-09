@@ -2,28 +2,17 @@
     name: create-task-data
     image: python:3.10
     command:
-      - python ./output_pipeline_task_storeid.py {parameters}
+      - pip install valohai-utils
+      - python ./print_vh_arguments.py {parameters}
     parameters:
-      - name: node_count
-        description: How many nodes to you want?
-        type: integer
-        default: 5
-- step:
-    name: train
-    image: python:3.10
-    command:
-      - python ./input_pipeline_task_storeid.py {parameters}
-    parameters:
-    - name: parameter_id
-      type: string
-- pipeline:
-    name: task pipeline
-    nodes:
-    - name: create-task-data
-      step: create-task-data
-      type: execution
-    - name: train
-      step: train
-      type: task
-    edges:
-    - [create-task-data.metadata.storeids, train.parameter.parameter_id]
+      - name: mylist-separated
+        default: ["one","two","three"]
+        multiple: separate
+        multiple-separator: ','
+        optional: true
+        type: string
+      - name: mylist-non-separated
+        default: ["one","two","three"]
+        multiple: separate
+        optional: true
+        type: string
