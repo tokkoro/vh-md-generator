@@ -16,3 +16,27 @@
         multiple: separate
         optional: true
         type: string
+      - name: non-capsuled-array
+        default: "one,two,three"
+        multiple: separate
+        multiple-separator: ','
+        optional: true
+        type: string
+      - name: non-capsuled-array-single-quote
+        default: "'one','two','three'"
+        multiple: separate
+        multiple-separator: ','
+        optional: true
+        type: string
+      - name: array-as-a-string
+        default: "[\"one\",\"two\",\"three\"]"
+        multiple: separate
+        multiple-separator: ','
+        optional: true
+        type: string
+      - name: array-as-a-string-single
+        default: "['one','two','three']"
+        multiple: separate
+        multiple-separator: ','
+        optional: true
+        type: string
