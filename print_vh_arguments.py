@@ -1,6 +1,9 @@
 import valohai
 from valohai.internals import global_state, global_state_loader
 
+import sys
+print(sys.argv[1:])
+
 global_state_loader.load_global_state_if_necessary()
 print(global_state.parameters)
 
