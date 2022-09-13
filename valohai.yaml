@@ -4,9 +4,6 @@
     name: Execute python train.py
     image: python
     command: python train.py {parameters}
-    #inputs:
-    #  - name: example-input
-    #    default: https://example.com/
     parameters:
       - name: how_random
         description: How random you want the metadata to be
@@ -20,3 +17,18 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
+      - name: single_string
+        type: string
+        default: "just-one"
+      - name: multi_separate
+        type: string
+        default: ["one","two","three"]
+        multiple: separate
+        multiple-separator: ':'
+      - name: multi_repeat
+        type: string
+        default: [ "four","five","six"]
+        multiple: repeat
+        multiple-separator: ':'
+
+

@@ -8,6 +8,12 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=10)
 parser.add_argument('--how_random', type=float, default=0.05)
 parser.add_argument('--wait_time', type=float, default=0.05)
+
+# multiple style testing
+parser.add_argument('--single_string')
+parser.add_argument('--multi_repeat', nargs='+')
+parser.add_argument('--multi_separate', nargs='+')
+
 parsed = parser.parse_args()
 end_epoch = parsed.epochs
 how_random = parsed.how_random
