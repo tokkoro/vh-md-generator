@@ -3,7 +3,7 @@
 - step:
     name: Execute python train.py
     image: python
-    command: python train.py {parameters}
+    command: echo {parameters} && echo "hi"
     #inputs:
     #  - name: example-input
     #    default: https://example.com/
