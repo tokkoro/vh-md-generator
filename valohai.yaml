@@ -9,8 +9,10 @@
     inputs:
      - name: input_a
        optional: true
+       keep-directories: full
      - name: input_b
        optional: true
+       keep-directories: full
     parameters:
       - name: how_random
         description: How random you want the metadata to be
