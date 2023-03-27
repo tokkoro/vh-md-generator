@@ -7,9 +7,9 @@
     - pip install valohai-utils
     - python train.py {parameters}
     inputs:
-     - name: input-a
+     - name: input_a
        optional: true
-     - name: input-b
+     - name: input_b
        optional: true
     parameters:
       - name: how_random
@@ -35,5 +35,5 @@
         step: first
         type: execution
     edges:
-      - [first.output.output-a, second.input.input-a]
-      - [first.output.output-b, second.input.input-b]
+      - [first.output.output_a, second.input.input_a]
+      - [first.output.output_b, second.input.input_b]
