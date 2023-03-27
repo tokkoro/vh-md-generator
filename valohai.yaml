@@ -1,7 +1,7 @@
 ---
 
 - step:
-    name: Execute python train.py
+    name: first
     image: python
     command:
     - pip install valohai-utils
