@@ -35,5 +35,5 @@
         step: first
         type: execution
     edges:
-      - [first.output.output_a, second.input.input_a]
-      - [first.output.output_b, second.input.input_b]
+      - [first.output.output_a*, second.input.input_a]
+      - [first.output.output_b*, second.input.input_b]
