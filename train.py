@@ -4,6 +4,8 @@ import time
 import math
 import argparse
 
+import valohai
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=10)
 parser.add_argument('--how_random', type=float, default=0.05)
@@ -39,3 +41,18 @@ for epoch in range(0, end_epoch):
     logMetadata(epoch + 1, lerp(4.0, 2.0, t) + random.random() * how_random,
                 steep_log01(t) + (how_random * random_m1_p1()))
     time.sleep(wait_time * (0.8 + 0.4 * random.random()))  # +- 20 % random
+
+# one in sub folder
+output_path = valohai.outputs("output-a").path("department/group/ouput-a.txt", makedirs=True)
+with open(output_path, "w") as f:
+    f.write("Data A\nis\nin this file\n")
+
+# other in root folder
+output_path_b = valohai.outputs("output-b").path("ouput-b.txt", makedirs=True)
+with open(output_path_b, "w") as f:
+    f.write("Data Root B\nis\nin this file\n")
+
+# other B but in sub folder in root folder
+output_path_b_s = valohai.outputs("output-b").path("sub-b/ouput-b.txt", makedirs=True)
+with open(output_path_b_s, "w") as f:
+    f.write("Data Sub folder B\nis\nin this file\n")
