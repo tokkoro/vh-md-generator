@@ -16,6 +16,16 @@ how_random = parsed.how_random
 wait_time = parsed.wait_time
 
 
+for path in valohai.inputs("input_a").path():
+    print(f"## input_a {path}")
+    with open(path, "r") as f:
+        print(f.read())
+for path in valohai.inputs("input_b").path():
+    print(f"## input_b {path}")
+    with open(path, "r") as f:
+        print(f.read())
+
+
 def logMetadata(epoch, loss, accuracy):
     print(json.dumps({
         'epoch': epoch,

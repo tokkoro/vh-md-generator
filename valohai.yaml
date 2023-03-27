@@ -36,3 +36,4 @@
         type: execution
     edges:
       - [first.output.output-a, second.input.input-a]
+      - [first.output.output-b, second.input.input-b]
