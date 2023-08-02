@@ -20,3 +20,13 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
+- step:
+    name: Execution with timeout 30
+    image: python
+    no-output-timeout: 30
+    command:
+      - echo START
+      - sleep 1
+      - echo CONTINUE
+      - sleep 10
+      - echo END
