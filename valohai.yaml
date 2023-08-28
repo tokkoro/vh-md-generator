@@ -1,22 +1,49 @@
 ---
 
 - step:
-    name: Execute python train.py
+    name: mega parameter package
     image: python
     command: python train.py {parameters}
-    #inputs:
-    #  - name: example-input
-    #    default: https://example.com/
     parameters:
-      - name: how_random
-        description: How random you want the metadata to be
+      - name: optional-1-with-default
         type: float
         default: 0.05
-      - name: epochs
-        description: How many epochs do you want?
-        type: integer
-        default: 10
-      - name: wait_time
-        description: How long to wait between generated metadata (seconds)
+        optional: true
+      - name: optional-2-with-default
         type: float
-        default: 1
+        default: 0.05
+        optional: true
+      - name: optional-3-with-default
+        type: float
+        default: 0.05
+        optional: true
+      - name: optional-4-without-default
+        type: float
+        optional: true
+      - name: optional-5-without-default
+        type: float
+        optional: true
+      - name: optional-6-without-default
+        type: float
+        optional: true
+      - name: mandatory-1-with-default
+        type: float
+        default: 0.05
+        optional: false
+      - name: mandatory-2-with-default
+        type: float
+        default: 0.05
+        optional: false
+      - name: mandatory-3-with-default
+        type: float
+        default: 0.05
+        optional: false
+      - name: mandatory-4-without-default
+        type: float
+        optional: false
+      - name: mandatory-5-without-default
+        type: float
+        optional: false
+      - name: mandatory-6-without-default
+        type: float
+        optional: false
