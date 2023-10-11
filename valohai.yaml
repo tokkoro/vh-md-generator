@@ -24,4 +24,59 @@
         default: 1
       - name: alias-name
         type: string
-        default: latest
+        default: alias-with-data
+
+- pipeline:
+    name: test-pipeline
+    nodes:
+      - name: node-e
+        type: execution
+        step: Execute python train.py
+    edges: []
+
+- step:
+    name: parameter-tester
+    image: tensorflow/tensorflow:2.6.0
+    command:
+    - echo {parameters}
+    parameters:
+    - name: int-no_default
+      type: integer
+    - name: int-default
+      type: integer
+      default: 123
+    - name: int-optional-default
+      type: integer
+      default: 123
+      optional: true
+    - name: int-optional-no_default
+      type: integer
+      optional: true
+    - name: string-no_default
+      type: string
+    - name: string-default
+      type: string
+      default: 'default'
+    - name: string-optional-default
+      type: string
+      default: 'default'
+      optional: true
+    - name: string-optional-no_default
+      type: string
+      optional: true
+    - name: string-empty_default
+      type: string
+      default: ''
+    - name: string-optional-empty_default
+      type: string
+      default: ''
+      optional: true
+    - name: flag
+      type: flag
+      pass-true-as: --flag=true
+      pass-false-as: --flag=false
+    - name: flag-optional
+      type: flag
+      optional: true
+      pass-true-as: --flag-optional=true
+      pass-false-as: --flag-optional=false
