@@ -6,10 +6,10 @@
     command: python train.py {parameters}
     inputs:
       - name: my_input
-        default: "{parameter:interpolateme}"
+        default: "{parameter:interpolate_me}"
         optional: true
         keep-directories: suffix
     parameters:
     - name: interpolate_me
-      default: "s3://tomi-dev/data/01FN6/01FN62HSVA18A719HAF8N7AQ7X/*/*.txt"
+      default: "s3://tomi-dev/data/01FN6/01FN62HSVA18A719HAF8N7AQ7X/output-63660/output_a/department/*/*.txt"
       type: string
