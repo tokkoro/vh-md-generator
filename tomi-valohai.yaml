@@ -1,9 +1,12 @@
 ---
 
 - step:
-    name: Execute python train.py
+    name: This step is from tomi-valohai
     image: python
     command: python train.py {parameters}
+    #inputs:
+    #  - name: example-input
+    #    default: https://example.com/
     parameters:
       - name: how_random
         description: How random you want the metadata to be
@@ -17,11 +20,6 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
-
-- step:
-    name: This step is from vh.yaml
-    image: python
-    command: python train.py {parameters}
 
 - step:
     name: This step is in both yaml
