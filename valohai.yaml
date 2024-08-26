@@ -1,11 +1,15 @@
 - step:
-    name: create-many-outputs
-    image: python:3.10
+    name: unzip-step
+    image: python
     command:
       - pip install valohai-utils
-      - python ./many_outputs.py {parameters}
+      - python ./unzipper.py {parameters}
     parameters:
       - name: how_many
         description: How many outputs do you want?
         type: integer
         default: 20
+    inputs:
+      - name: package
+        optional: false
+        default: https://example.com/package.zip
