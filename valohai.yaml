@@ -5,10 +5,10 @@
       - pip install valohai-utils
       - python ./unzipper.py {parameters}
     parameters:
-      - name: how_many
-        description: How many outputs do you want?
-        type: integer
-        default: 20
+      - name: flat-directory
+        description: Should we flatten the extracted content
+        type: flag
+        default: true
     inputs:
       - name: package
         optional: false
