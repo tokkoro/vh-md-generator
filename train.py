@@ -1,41 +1,38 @@
 import json
-import random
-import time
-import math
 import argparse
+import random
+from datetime import timedelta, datetime
+
+
+def random_date(start, end):
+    delta = end - start
+    int_delta = (delta.days * 24 * 60 * 60) + delta.seconds
+    random_second = random.randrange(int_delta)
+    return start + timedelta(seconds=random_second)
+
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--epochs', type=int, default=10)
-parser.add_argument('--how_random', type=float, default=0.05)
-parser.add_argument('--wait_time', type=float, default=0.05)
+parser.add_argument('--files', type=int, default=10)
 parsed = parser.parse_args()
-end_epoch = parsed.epochs
-how_random = parsed.how_random
-wait_time = parsed.wait_time
+file_count = parsed.files
+version_name = f"{random_date(datetime(2020, 1, 1), datetime.now())}".replace(" ", "-").replace(":", "-")
 
+metadata = {
+    "valohai.dataset-versions": [{
+        'uri': f"dataset://like-ap/{version_name}",
+        'from': "dataset://like-ap/latest",
+        'start_fresh': True,
+    }]
+}
 
-def logMetadata(epoch, loss, accuracy):
-    print(json.dumps({
-        'epoch': epoch,
-        'loss': loss,
-        'acc': accuracy,
-    }))
+for i in range(file_count):
+    f = open("/valohai/outputs/price_TOMI_" + str(i) + ".csv", "w")
+    f.write(f"timestamp,price_TOMI_{i+1}\n{random_date(datetime(2020, 1, 1), datetime.now())},{random.random() * 100}\n")
+    f.close()
+    fmd = open("/valohai/outputs/price_TOMI_" + str(i) + ".csv.metadata.json", "w")
+    fmd.write(json.dumps(metadata))
+    fmd.close()
 
-
-def lerp(a, b, t):
-    return a * (1 - t) + b * t
-
-
-def steep_log01(t):
-    return max(0.0, (1 + math.log10(max(0.000000001, t)) / 10))
-
-
-def random_m1_p1():
-    return 2.0 * (random.random() - 0.5)
-
-
-for epoch in range(0, end_epoch):
-    t = epoch / end_epoch
-    logMetadata(epoch + 1, lerp(4.0, 2.0, t) + random.random() * how_random,
-                steep_log01(t) + (how_random * random_m1_p1()))
-    time.sleep(wait_time * (0.8 + 0.4 * random.random()))  # +- 20 % random
+print(json.dumps({
+    'file_count': file_count,
+}))
