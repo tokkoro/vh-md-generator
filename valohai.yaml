@@ -26,6 +26,9 @@
         description: How long to wait between generated metadata (seconds)
         type: float
         default: 1
+      - name: file_name
+        type: string
+        description: Use as a dynamic input path parameter
 
 - pipeline:
     name: test
