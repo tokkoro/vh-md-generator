@@ -18,7 +18,7 @@ file_count = parsed.files
 version_name = f"{random_date(datetime(2020, 1, 1), datetime.now())}".replace(" ", "-").replace(":", "-")
 
 metadata = {
-    "valohai.dataset-versions": []
+    "valohai.dataset-versions": "bad-value"
 }
 
 for i in range(file_count):
