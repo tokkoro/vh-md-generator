@@ -23,3 +23,17 @@
     image: python
     command: echo "Hello, world!"
     environment: start
+
+- pipeline:
+    name: env-name-test
+    nodes:
+      - name: node-a
+        type: execution
+        step: full-env-name
+      - name: node-b
+        type: execution
+        step: mid-env-name
+      - name: node-c
+        type: execution
+        step: start-env-name
+    edges: []
