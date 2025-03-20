@@ -17,3 +17,9 @@
     image: python
     command: echo "Hello, world!"
     environment: test
+
+- step:
+    name: mid-env-name
+    image: python
+    command: echo "Hello, world!"
+    environment: start
