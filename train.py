@@ -3,6 +3,7 @@ import random
 import time
 import math
 import argparse
+import valohai
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--epochs', type=int, default=10)
@@ -13,6 +14,8 @@ end_epoch = parsed.epochs
 how_random = parsed.how_random
 wait_time = parsed.wait_time
 
+output_path = valohai.outputs().path('/valohai/outputs/predictions')
+print(f"{output_path=}")
 
 def logMetadata(epoch, loss, accuracy):
     print(json.dumps({

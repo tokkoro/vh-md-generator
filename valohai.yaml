@@ -1,39 +1,7 @@
 ---
 
 - step:
-    name: full-env-name
+    name: test-vh-utils
     image: python
-    command: echo "Hello, world!"
-    environment: slug-start-a
+    command: pip install valohai-utils && python train.py
 
-- step:
-    name: start-env-name
-    image: python
-    command: echo "Hello, world!"
-    environment: slug-st
-
-- step:
-    name: toomany-env-name
-    image: python
-    command: echo "Hello, world!"
-    environment: test
-
-- step:
-    name: mid-env-name
-    image: python
-    command: echo "Hello, world!"
-    environment: start
-
-- pipeline:
-    name: env-name-test
-    nodes:
-      - name: node-a
-        type: execution
-        step: full-env-name
-      - name: node-b
-        type: execution
-        step: mid-env-name
-      - name: node-c
-        type: execution
-        step: start-env-name
-    edges: []
