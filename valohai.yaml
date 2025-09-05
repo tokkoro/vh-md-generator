@@ -9,3 +9,7 @@
         description: How many files do you want?
         type: integer
         default: 10
+      - name: prefix
+        description: Prefix filename
+        type: string
+        default: price_TOMI_
